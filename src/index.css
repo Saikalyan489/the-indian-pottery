@@ -1,0 +1,250 @@
+@import "tailwindcss";
+
+:root {
+  /* Surface & Background Tokens (Unified Rich Dark Theme) */
+  --bg-page: #0c0a09;
+  --bg-surface: #14100d;
+  --bg-card: #181310;
+  --bg-card-muted: #1f1814;
+  --bg-card-subtle: #261e18;
+  --bg-nav: rgba(12, 10, 9, 0.88);
+
+  /* Typography Colors */
+  --text-main: #E8DFD7;
+  --text-heading: #FAF5F0;
+  --text-muted: #B8AEA6;
+  --text-subtle: #D8A589;
+  --text-terracotta: #E07A4A;
+
+  /* Borders & Dividers */
+  --border-subtle: rgba(255, 255, 255, 0.12);
+  --border-terracotta: rgba(216, 109, 61, 0.28);
+  --border-terracotta-strong: rgba(229, 163, 68, 0.45);
+
+  /* Brand Accents */
+  --color-terracotta: #D86D3D;
+  --color-terracotta-hover: #E6885C;
+  --color-terracotta-soft: #251B15;
+  --color-ochre: #E5A344;
+  --color-silt: #7D8873;
+
+  /* Shadows */
+  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+
+  /* Header Height Offset */
+  --nav-height: 4.5rem;
+}
+
+/* Custom Obsidian & Terracotta Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0c0a09;
+}
+::-webkit-scrollbar-thumb {
+  background: #b8582b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e5a344;
+}
+
+@theme {
+  --font-serif: 'Syne', sans-serif;
+  --font-sans: 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Syne', sans-serif;
+  --font-mono: 'Space Grotesk', monospace;
+
+  --color-page: var(--bg-page);
+  --color-surface: var(--bg-surface);
+  --color-card: var(--bg-card);
+  --color-card-muted: var(--bg-card-muted);
+  --color-card-subtle: var(--bg-card-subtle);
+  --color-nav: var(--bg-nav);
+
+  --color-text-main: var(--text-main);
+  --color-text-heading: var(--text-heading);
+  --color-text-muted: var(--text-muted);
+  --color-text-subtle: var(--text-subtle);
+  --color-text-terracotta: var(--text-terracotta);
+
+  --color-border-subtle: var(--border-subtle);
+  --color-border-terracotta: var(--border-terracotta);
+  --color-border-terracotta-strong: var(--border-terracotta-strong);
+
+  --color-terracotta: var(--color-terracotta);
+  --color-terracotta-hover: var(--color-terracotta-hover);
+  --color-terracotta-soft: var(--color-terracotta-soft);
+  --color-ochre: var(--color-ochre);
+  --color-silt: var(--color-silt);
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 18s linear infinite;
+}
+
+@keyframes textShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-text-shine {
+  background: linear-gradient(
+    90deg,
+    #FAF5F0 0%,
+    #D8C7B8 22%,
+    #FAF5F0 38%,
+    #FFD580 47%,
+    #FFFFFF 50%,
+    #FFD580 53%,
+    #FAF5F0 62%,
+    #D8C7B8 78%,
+    #FAF5F0 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: textShimmer 4.5s ease-in-out infinite;
+  text-shadow: 0 0 35px rgba(229, 163, 68, 0.3);
+}
+
+@keyframes travelHorizontal {
+  0% {
+    transform: translateX(-8%) scale(1.08);
+  }
+  50% {
+    transform: translateX(8%) scale(1.08);
+  }
+  100% {
+    transform: translateX(-8%) scale(1.08);
+  }
+}
+
+.animate-travel-bg {
+  animation: travelHorizontal 8.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes fireFlicker {
+  0%, 100% {
+    opacity: 0.88;
+    transform: scale(1);
+    filter: brightness(1) saturate(1.1);
+  }
+  25% {
+    opacity: 0.98;
+    transform: scale(1.02) translateY(-3px);
+    filter: brightness(1.2) saturate(1.3);
+  }
+  50% {
+    opacity: 0.82;
+    transform: scale(0.99) translateY(2px);
+    filter: brightness(0.92) saturate(1);
+  }
+  75% {
+    opacity: 1;
+    transform: scale(1.03) translateY(-2px);
+    filter: brightness(1.15) saturate(1.25);
+  }
+}
+
+.animate-fire-flicker {
+  animation: fireFlicker 1.4s ease-in-out infinite alternate;
+}
+
+/* Base resets & typography */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height);
+  background-color: #0c0a09;
+  color: var(--text-main);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+  background-color: #0c0a09;
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(184, 88, 43, 0.15), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 60%, rgba(229, 163, 68, 0.08), transparent),
+    radial-gradient(ellipse 60% 40% at 0% 80%, rgba(184, 88, 43, 0.08), transparent),
+    radial-gradient(rgba(229, 163, 68, 0.04) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 32px 32px;
+  background-attachment: fixed;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Refined Craft Tag */
+.craft-tag {
+  font-family: var(--font-display);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-terracotta);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-card-muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D8A589;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-terracotta);
+}
+
+/* Keyboard accessibility focus styling */
+:focus-visible {
+  outline: 2px solid var(--color-terracotta);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
